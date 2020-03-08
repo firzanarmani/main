@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Block;
 
 /**
  * The API of the Model component.
@@ -53,28 +53,23 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteBlock(Block target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addBlock(Block block);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setBlock(Block target, Block editedBlock);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
