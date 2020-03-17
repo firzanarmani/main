@@ -12,89 +12,77 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
 /**
- * Represents a BlockNode in the Notably data structure.
+ * Represents a BlockTreeItem in the Notably data structure.
  */
-public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
-    private TreeItem<Block> blockNode;
-
-    public BlockNodeImpl(Block block) {
-        requireNonNull(block);
-        blockNode = new TreeItem<Block>(block);
+public class BlockTreeItemImpl extends TreeItem<Block> implements BlockTreeItem {
+    public BlockTreeItemImpl(Block block) {
+        super(requireNonNull(block));
     }
 
-    public BlockNodeImpl(TreeItem<Block> treeItem) {
-        requireNonNull(treeItem);
-        blockNode = treeItem;
-    }
-
-    public static BlockNode createRootBlockNode() {
-        return new BlockNodeImpl(BlockImpl.createRootBlock());
-    }
-
-    public static BlockNode createBlockNode(Block block) {
-        return new BlockNodeImpl(block);
+    public static BlockTreeItem createRootBlockNode() {
+        return new BlockTreeItemImpl(BlockImpl.createRootBlock());
     }
 
     @Override
     public TreeItem<Block> getTreeItem() {
-        return blockNode;
+        return this;
     }
 
     @Override
     public Title getTitle() {
-        return blockNode.getValue().getTitle();
+        return this.getValue().getTitle();
     }
 
     @Override
     public Body getBody() {
-        return blockNode.getValue().getBody();
+        return this.getValue().getBody();
     }
 
     @Override
     public Block getBlock() {
-        return blockNode.getValue();
+        return this.getValue();
     }
 
     @Override
-    public BlockNode getBlockParent() {
-        return new BlockNodeImpl(blockNode.getParent());
+    public BlockTreeItem getBlockParent() {
+        return (BlockTreeItem) this.getParent();
     }
 
     @Override
     public ObservableList<TreeItem<Block>> getObservableChildren() {
-        return blockNode.getChildren();
+        return this.getChildren();
     }
 
     @Override
     public void setChildren(List<TreeItem<Block>> newChildren) {
         requireNonNull(newChildren);
-        blockNode.getChildren().setAll(newChildren);
+        this.getChildren().setAll(newChildren);
     }
 
     @Override
-    public BlockNode getChild(Title title) throws NoSuchBlockException {
+    public BlockTreeItem getChild(Title title) throws NoSuchBlockException {
         requireNonNull(title);
-        TreeItem<Block> child = blockNode.getChildren()
+        TreeItem<Block> child = this.getChildren()
             .stream()
             .filter(block -> block.getValue()
                 .getTitle()
                 .equals(title))
             .findFirst()
             .orElseThrow(() -> new NoSuchBlockException(title.getText()));
-        return new BlockNodeImpl(child);
+        return (BlockTreeItem) child;
     }
 
     @Override
     public void setChild(Title title, Block newBlock) {
         requireNonNull(title);
         requireNonNull(newBlock);
-        BlockNode child = getChild(title);
+        BlockTreeItem child = getChild(title);
         child.getTreeItem().setValue(newBlock);
     }
 
     @Override
     public void addChild(Block block) throws DuplicateBlockException {
-        boolean hasMatchingChild = blockNode.getChildren()
+        boolean hasMatchingChild = this.getChildren()
             .stream()
             .anyMatch(child -> child.getValue()
                 .getTitle()
@@ -102,23 +90,23 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
         if (hasMatchingChild) {
             throw new DuplicateBlockException();
         } else {
-            blockNode.getChildren().add(new TreeItem<Block>(block));
+            this.getChildren().add(new TreeItem<Block>(block));
         }
     }
 
     @Override
     public void removeChild(Block toRemove) {
-        BlockNode child = getChild(toRemove.getTitle());
-        blockNode.getChildren().remove(child.getTreeItem());
+        BlockTreeItem child = getChild(toRemove.getTitle());
+        this.getChildren().remove(child.getTreeItem());
     }
 
     @Override
     public boolean isRoot() {
-        return blockNode.getValue()
+        return this.getValue()
                 .getTitle()
                 .getText()
                 .equals("Root")
-            && blockNode.getParent() == null;
+            && this.getParent() == null;
     }
 
     @Override
@@ -127,11 +115,11 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
             return true;
         }
 
-        if (!(obj instanceof BlockNode)) {
+        if (!(obj instanceof BlockTreeItem)) {
             return false;
         }
 
-        BlockNode otherBlock = (BlockNode) obj;
+        BlockTreeItem otherBlock = (BlockTreeItem) obj;
         return otherBlock.getTitle().equals(this.getTitle())
             && otherBlock.getBlockParent().equals(this.getBlockParent())
             && otherBlock.getObservableChildren().equals(this.getObservableChildren());

@@ -4,21 +4,21 @@ import com.notably.commons.core.path.Path;
 
 /**
  * Custom tree-like data structure that uses the Path object
- * to obtain the BlockNode needed for manipulation.
+ * to obtain the BlockTreeItem needed for manipulation.
  */
 public interface BlockTree {
     /**
-     * Gets the root BlockNode of the block tree.
-     * @return The root BlockNode.
+     * Gets the root BlockTreeItem of the block tree.
+     * @return The root BlockTreeItem.
      */
-    BlockNode getRootBlock();
+    BlockTreeItem getRootBlock();
 
     /**
-     * Gets the BlockNode at the path specified.
+     * Gets the BlockTreeItem at the path specified.
      * @param path Full path of the block.
      * @return
      */
-    BlockNode get(Path path);
+    BlockTreeItem get(Path path);
 
     /**
      * Adds a new Block to the block at the path specified.

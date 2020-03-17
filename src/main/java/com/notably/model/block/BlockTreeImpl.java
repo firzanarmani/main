@@ -10,14 +10,14 @@ import com.notably.model.block.exceptions.NoSuchBlockException;
  * to obtain the Block needed for manipulation.
  */
 public class BlockTreeImpl implements BlockTree {
-    private BlockNode root;
+    private BlockTreeItem root;
 
     public BlockTreeImpl() {
-        this.root = BlockNodeImpl.createRootBlockNode();
+        this.root = BlockTreeItemImpl.createRootBlockNode();
     }
 
     @Override
-    public BlockNode getRootBlock() {
+    public BlockTreeItem getRootBlock() {
         return this.root;
     }
 
@@ -25,7 +25,7 @@ public class BlockTreeImpl implements BlockTree {
     public void add(Path path, Block newBlock) throws NoSuchBlockException {
         requireNonNull(path);
         requireNonNull(newBlock);
-        BlockNode currentBlock = get(path);
+        BlockTreeItem currentBlock = get(path);
         for (String component : path.getComponents()) {
             currentBlock = currentBlock.getChild(new Title(component));
         }
@@ -36,8 +36,8 @@ public class BlockTreeImpl implements BlockTree {
     public void set(Path path, Block newBlock) {
         requireNonNull(path);
         requireNonNull(newBlock);
-        BlockNode currentBlock = get(path);
-        BlockNode parentBlock;
+        BlockTreeItem currentBlock = get(path);
+        BlockTreeItem parentBlock;
         if (!currentBlock.isRoot()) {
             parentBlock = currentBlock.getBlockParent();
             int index = parentBlock.getObservableChildren()
@@ -51,8 +51,8 @@ public class BlockTreeImpl implements BlockTree {
     @Override
     public void remove(Path path) {
         requireNonNull(path);
-        BlockNode currentBlock = get(path);
-        BlockNode parentBlock;
+        BlockTreeItem currentBlock = get(path);
+        BlockTreeItem parentBlock;
         if (!currentBlock.isRoot()) {
             parentBlock = currentBlock.getBlockParent();
             int index = parentBlock.getObservableChildren()
@@ -64,9 +64,9 @@ public class BlockTreeImpl implements BlockTree {
     }
 
     @Override
-    public BlockNode get(Path path) {
+    public BlockTreeItem get(Path path) {
         requireNonNull(path);
-        BlockNode currentBlock = root;
+        BlockTreeItem currentBlock = root;
         for (String component : path.getComponents()) {
             currentBlock = currentBlock.getChild(new Title(component));
         }

@@ -8,7 +8,7 @@ import javafx.scene.control.TreeItem;
 /**
  * API of the BlockNode component.
  */
-public interface BlockNode {
+public interface BlockTreeItem {
     Title getTitle();
 
     Body getBody();
@@ -21,7 +21,7 @@ public interface BlockNode {
      * Gets the parent block of a block, if possible.
      * Returns an {@code Optional.empty()} if the block is the root block.
      */
-    BlockNode getBlockParent();
+    BlockTreeItem getBlockParent();
 
     /**
      * Gets a list of children blocks of a block.
@@ -36,7 +36,7 @@ public interface BlockNode {
     /**
      * Finds a child block of a block, with the given input.
      */
-    BlockNode getChild(Title title);
+    BlockTreeItem getChild(Title title);
 
     /**
      * Replaces a child block of a block, that matches the title, with a new child block.
