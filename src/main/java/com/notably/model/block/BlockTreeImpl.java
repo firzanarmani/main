@@ -3,8 +3,10 @@ package com.notably.model.block;
 import com.notably.commons.core.path.Path;
 import com.notably.model.block.exceptions.NoSuchBlockException;
 
-import javafx.scene.control.TreeItem;
-
+/**
+ * Custom tree-like data structure that uses the Path object
+ * to obtain the Block needed for manipulation.
+ */
 public class BlockTreeImpl implements BlockTree {
     private BlockNode root;
 

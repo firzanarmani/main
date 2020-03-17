@@ -1,8 +1,9 @@
 package com.notably.model.block;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import java.util.List;
 
 /**
  * API of the BlockNode component.

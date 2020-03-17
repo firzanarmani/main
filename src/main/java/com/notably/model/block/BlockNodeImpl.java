@@ -10,10 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
 /**
- * Represents a Block in the Notably data structure.
+ * Represents a BlockNode in the Notably data structure.
  */
 public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
-    TreeItem<Block> blockNode;
+    private TreeItem<Block> blockNode;
 
     public BlockNodeImpl(Block block) {
         blockNode = new TreeItem<Block>(block);
@@ -46,10 +46,10 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
         return blockNode.getValue().getBody();
     }
 
-	@Override
-	public Block getBlock() {
-		return blockNode.getValue();
-	}
+    @Override
+    public Block getBlock() {
+        return blockNode.getValue();
+    }
 
     @Override
     public BlockNode getBlockParent() {
@@ -68,7 +68,7 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
     }
 
     @Override
-    public BlockNode getChild(Title title) throws NoSuchBlockException{
+    public BlockNode getChild(Title title) throws NoSuchBlockException {
         Objects.requireNonNull(title);
         TreeItem<Block> child = blockNode.getChildren()
             .stream()

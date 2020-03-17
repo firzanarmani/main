@@ -1,12 +1,6 @@
 package com.notably.model.block;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-
-import com.notably.model.block.exceptions.DuplicateBlockException;
-import com.notably.model.block.exceptions.NoSuchBlockException;
 
 /**
  * Represents a Block in the Notably data structure.
