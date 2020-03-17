@@ -1,5 +1,7 @@
 package com.notably.model.block;
 
+import static java.util.Objects.requireNonNull;
+
 import com.notably.commons.core.path.Path;
 import com.notably.model.block.exceptions.NoSuchBlockException;
 
@@ -21,16 +23,19 @@ public class BlockTreeImpl implements BlockTree {
 
     @Override
     public void add(Path path, Block newBlock) throws NoSuchBlockException {
+        requireNonNull(path);
+        requireNonNull(newBlock);
         BlockNode currentBlock = get(path);
         for (String component : path.getComponents()) {
             currentBlock = currentBlock.getChild(new Title(component));
         }
         currentBlock.addChild(newBlock);
-        // currentBlock.getChildren().add(new TreeItem<Block>(newBlock));
     }
 
     @Override
     public void set(Path path, Block newBlock) {
+        requireNonNull(path);
+        requireNonNull(newBlock);
         BlockNode currentBlock = get(path);
         BlockNode parentBlock;
         if (!currentBlock.isRoot()) {
@@ -45,6 +50,7 @@ public class BlockTreeImpl implements BlockTree {
 
     @Override
     public void remove(Path path) {
+        requireNonNull(path);
         BlockNode currentBlock = get(path);
         BlockNode parentBlock;
         if (!currentBlock.isRoot()) {
@@ -59,6 +65,7 @@ public class BlockTreeImpl implements BlockTree {
 
     @Override
     public BlockNode get(Path path) {
+        requireNonNull(path);
         BlockNode currentBlock = root;
         for (String component : path.getComponents()) {
             currentBlock = currentBlock.getChild(new Title(component));

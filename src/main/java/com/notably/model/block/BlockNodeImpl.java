@@ -1,7 +1,9 @@
 package com.notably.model.block;
 
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.hash;
+
 import java.util.List;
-import java.util.Objects;
 
 import com.notably.model.block.exceptions.DuplicateBlockException;
 import com.notably.model.block.exceptions.NoSuchBlockException;
@@ -16,10 +18,12 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
     private TreeItem<Block> blockNode;
 
     public BlockNodeImpl(Block block) {
+        requireNonNull(block);
         blockNode = new TreeItem<Block>(block);
     }
 
     public BlockNodeImpl(TreeItem<Block> treeItem) {
+        requireNonNull(treeItem);
         blockNode = treeItem;
     }
 
@@ -63,13 +67,13 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
 
     @Override
     public void setChildren(List<TreeItem<Block>> newChildren) {
-        Objects.requireNonNull(newChildren);
+        requireNonNull(newChildren);
         blockNode.getChildren().setAll(newChildren);
     }
 
     @Override
     public BlockNode getChild(Title title) throws NoSuchBlockException {
-        Objects.requireNonNull(title);
+        requireNonNull(title);
         TreeItem<Block> child = blockNode.getChildren()
             .stream()
             .filter(block -> block.getValue()
@@ -82,8 +86,8 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
 
     @Override
     public void setChild(Title title, Block newBlock) {
-        Objects.requireNonNull(title);
-        Objects.requireNonNull(newBlock);
+        requireNonNull(title);
+        requireNonNull(newBlock);
         BlockNode child = getChild(title);
         child.getTreeItem().setValue(newBlock);
     }
@@ -129,12 +133,13 @@ public class BlockNodeImpl extends TreeItem<Block> implements BlockNode {
 
         BlockNode otherBlock = (BlockNode) obj;
         return otherBlock.getTitle().equals(this.getTitle())
-            && otherBlock.getBlockParent().equals(this.getBlockParent());
+            && otherBlock.getBlockParent().equals(this.getBlockParent())
+            && otherBlock.getObservableChildren().equals(this.getObservableChildren());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getParent(), this.getTitle());
+        return hash(this.getParent(), this.getTitle(), this.getObservableChildren());
     }
 
 }

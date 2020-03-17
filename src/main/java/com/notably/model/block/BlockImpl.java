@@ -1,6 +1,6 @@
 package com.notably.model.block;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Block in the Notably data structure.
@@ -22,8 +22,8 @@ public class BlockImpl implements Block {
      * Used when creating a block with additional body argument.
      */
     public BlockImpl(Title title, Body body) {
-        Objects.requireNonNull(title);
-        Objects.requireNonNull(body);
+        requireNonNull(title);
+        requireNonNull(body);
         this.title = title;
         this.body = body;
     }
