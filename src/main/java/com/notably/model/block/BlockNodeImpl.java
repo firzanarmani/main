@@ -1,7 +1,7 @@
 package com.notably.model.block;
 
-import static java.util.Objects.requireNonNull;
 import static java.util.Objects.hash;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
