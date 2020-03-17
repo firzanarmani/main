@@ -13,15 +13,10 @@ public class BlockTreeImpl implements BlockTree {
     }
 
     @Override
-    public TreeItem<Block> getRootBlock() {
-        return this.root.getTreeItem();
+    public BlockNode getRootBlock() {
+        return this.root;
     }
 
-    /**
-     * Adds a new Block to the block at the path specified.
-     * @param path Full path of the parent block
-     * @param newBlock The block to be added
-     */
     @Override
     public void add(Path path, Block newBlock) throws NoSuchBlockException {
         BlockNode currentBlock = get(path);
@@ -32,11 +27,6 @@ public class BlockTreeImpl implements BlockTree {
         // currentBlock.getChildren().add(new TreeItem<Block>(newBlock));
     }
 
-    /**
-     * Sets the block at the specified path to a new block.
-     * @param path Full path of the block
-     * @param newBlock The new block to be set
-     */
     @Override
     public void set(Path path, Block newBlock) {
         BlockNode currentBlock = get(path);
@@ -51,10 +41,6 @@ public class BlockTreeImpl implements BlockTree {
         }
     }
 
-    /**
-     * Remove the block at the specified path.
-     * @param path
-     */
     @Override
     public void remove(Path path) {
         BlockNode currentBlock = get(path);
@@ -69,13 +55,12 @@ public class BlockTreeImpl implements BlockTree {
         }
     }
 
-	@Override
-	public BlockNode get(Path path) {
+    @Override
+    public BlockNode get(Path path) {
         BlockNode currentBlock = root;
         for (String component : path.getComponents()) {
             currentBlock = currentBlock.getChild(new Title(component));
         }
         return currentBlock;
-	}
-
+    }
 }
