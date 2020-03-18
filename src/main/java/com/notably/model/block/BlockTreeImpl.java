@@ -13,7 +13,7 @@ public class BlockTreeImpl implements BlockTree {
     private BlockTreeItem root;
 
     public BlockTreeImpl() {
-        this.root = BlockTreeItemImpl.createRootBlockNode();
+        this.root = BlockTreeItemImpl.createRootBlockTreeItem();
     }
 
     @Override

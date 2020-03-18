@@ -20,7 +20,7 @@ public class BlockTreeItemImpl implements BlockTreeItem {
         blockTreeItem = new TreeItem<Block>(block);
     }
 
-    public static BlockTreeItem createRootBlockNode() {
+    public static BlockTreeItem createRootBlockTreeItem() {
         return new BlockTreeItemImpl(BlockImpl.createRootBlock());
     }
 
