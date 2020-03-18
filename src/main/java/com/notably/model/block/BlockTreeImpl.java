@@ -27,9 +27,9 @@ public class BlockTreeImpl implements BlockTree {
         requireNonNull(newBlock);
         BlockTreeItem currentBlock = get(path);
         for (String component : path.getComponents()) {
-            currentBlock = currentBlock.getChild(new Title(component));
+            currentBlock = currentBlock.getBlockChild(new Title(component));
         }
-        currentBlock.addChild(newBlock);
+        currentBlock.addBlockChild(newBlock);
     }
 
     @Override
@@ -38,11 +38,11 @@ public class BlockTreeImpl implements BlockTree {
         requireNonNull(newBlock);
         BlockTreeItem currentBlock = get(path);
         BlockTreeItem parentBlock;
-        if (!currentBlock.isRoot()) {
+        if (!currentBlock.isRootBlock()) {
             parentBlock = currentBlock.getBlockParent();
-            int index = parentBlock.getObservableChildren()
+            int index = parentBlock.getBlockChildren()
                 .indexOf(currentBlock.getTreeItem());
-            parentBlock.getObservableChildren().get(index).setValue(newBlock);
+            parentBlock.getBlockChildren().get(index).setValue(newBlock);
         } else {
             // TODO: Error - Cannot replace root
         }
@@ -53,11 +53,11 @@ public class BlockTreeImpl implements BlockTree {
         requireNonNull(path);
         BlockTreeItem currentBlock = get(path);
         BlockTreeItem parentBlock;
-        if (!currentBlock.isRoot()) {
+        if (!currentBlock.isRootBlock()) {
             parentBlock = currentBlock.getBlockParent();
-            int index = parentBlock.getObservableChildren()
+            int index = parentBlock.getBlockChildren()
                 .indexOf(currentBlock.getTreeItem());
-            parentBlock.getObservableChildren().remove(index);
+            parentBlock.getBlockChildren().remove(index);
         } else {
             // TODO: Error - Cannot delete root
         }
@@ -68,7 +68,7 @@ public class BlockTreeImpl implements BlockTree {
         requireNonNull(path);
         BlockTreeItem currentBlock = root;
         for (String component : path.getComponents()) {
-            currentBlock = currentBlock.getChild(new Title(component));
+            currentBlock = currentBlock.getBlockChild(new Title(component));
         }
         return currentBlock;
     }
