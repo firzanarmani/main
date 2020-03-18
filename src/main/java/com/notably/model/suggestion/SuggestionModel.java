@@ -29,20 +29,18 @@ public interface SuggestionModel {
      * TODO: add logo.
      * @return The meaning of the user input.
      */
-    Property<Optional<String>> commandTextProperty();
+    Property<Optional<String>> responseTextProperty();
 
     /**
-     * Sets the command text.
-     * @param commandText The "command" that the user inputs, e.g. open, search, etc.
+     * Updates the responseTextProperty.
+     * @param responseText The meaning of the "command" that the user inputs.
      */
-    void setCommandInputText(String commandText);
-
-    String getCommandInputText();
+    void setResponseText(String responseText);
 
     /**
      * Resets the command text when the user clears the input text field.
      */
-    void clearCommandInputText();
+    void clearResponseText();
 
     /**
      * Resets the list of suggestions.

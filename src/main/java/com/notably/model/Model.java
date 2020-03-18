@@ -5,12 +5,14 @@ import java.util.function.Predicate;
 
 import com.notably.commons.core.GuiSettings;
 
+import com.notably.model.commandinput.CommandInputModel;
+
 import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends CommandInputModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Object> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
