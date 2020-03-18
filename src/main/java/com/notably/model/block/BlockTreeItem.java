@@ -8,11 +8,7 @@ import javafx.scene.control.TreeItem;
 /**
  * API of the BlockNode component.
  */
-public interface BlockTreeItem {
-    Title getTitle();
-
-    Body getBody();
-
+public interface BlockTreeItem extends Block {
     Block getBlock();
 
     TreeItem<Block> getTreeItem();
@@ -26,36 +22,38 @@ public interface BlockTreeItem {
     /**
      * Gets a list of children blocks of a block.
      */
-    ObservableList<TreeItem<Block>> getObservableChildren();
+    ObservableList<TreeItem<Block>> getBlockChildren();
 
     /**
      * Replaces all the children of the block with a new list of children
      */
+    /*
+    TODO: Implement and test after storage is implemented
     void setChildren(List<TreeItem<Block>> newChildren);
 
     /**
      * Finds a child block of a block, with the given input.
      */
-    BlockTreeItem getChild(Title title);
+    BlockTreeItem getBlockChild(Title title);
 
     /**
      * Replaces a child block of a block, that matches the title, with a new child block.
      */
-    void setChild(Title title, Block newBlock);
+    void setBlockChild(Title title, Block newBlock);
 
     /**
      * Adds a single new child to a block.
      */
-    void addChild(Block newBlock);
+    void addBlockChild(Block newBlock);
 
     /**
      * Removes a specified child block from a block.
      * @param toRemove
      */
-    void removeChild(Block toRemove);
+    void removeBlockChild(Block toRemove);
 
     /**
      * Checks if a block is a root block.
      */
-    boolean isRoot();
+    boolean isRootBlock();
 }
