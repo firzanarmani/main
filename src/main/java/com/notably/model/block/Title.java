@@ -3,6 +3,8 @@ package com.notably.model.block;
 import static com.notably.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import com.notably.model.block.exceptions.DuplicateBlockException;
+
 /**
  * Represents a Block's title in Notably.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
@@ -27,7 +29,7 @@ public class Title {
      */
     public Title(String title) {
         requireNonNull(title);
-        checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTitle(title));
         blockTitle = title;
     }
 

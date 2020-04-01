@@ -32,7 +32,7 @@ public class NewCommand extends Command {
         requireNonNull(notablyModel);
         try {
             notablyModel.addBlockToCurrentPath(toAdd);
-        } catch (DuplicateBlockException ex) {
+        } catch (IllegalArgumentException | DuplicateBlockException ex) {
             throw new CommandException(ex.getMessage());
         }
     }
