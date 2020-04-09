@@ -3,6 +3,6 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="tree-view">
-  <TreeView fx:id="sideBarTreeView" styleClass="tree-view" VBox.vgrow="ALWAYS" focusTraversable="false" />
+<VBox styleClass="tree-view" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <TreeView fx:id="sideBarTreeView" focusTraversable="false" showRoot="false" styleClass="tree-view" VBox.vgrow="ALWAYS" />
 </VBox>
