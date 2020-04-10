@@ -155,16 +155,6 @@ public class MainWindow extends ViewPart<Stage> {
     private void executeCommand(String commandText) throws CommandException, ParseException {
         try {
             logic.execute(commandText);
-            // logger.info("Result: " + commandResult.getFeedbackToUser());
-
-            // if (commandResult.isShowHelp()) {
-            //     handleHelp();
-            // }
-
-            // if (commandResult.isExit()) {
-            //     handleExit();
-            // }
-
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             throw e;
