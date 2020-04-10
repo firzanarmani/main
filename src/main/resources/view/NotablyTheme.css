@@ -179,30 +179,6 @@
   -fx-background-color: white;
 }
 
-.context-menu {
-  -fx-background-color: #e0e8f9;
-}
-
-.menu:hover,
-.menu:showing {
-  -fx-background-color: #bed0f7;
-}
-
-.menu-item:focused {
-  -fx-background-color: #bed0f7;
-}
-
-.menu-bar {
-  -fx-background-color: #e0e8f9;
-}
-
-.menu-bar .label {
-  -fx-font-size: 13px;
-  -fx-font-family: "Roboto Regular";
-  -fx-font-style: normal;
-  -fx-text-fill: #19216c;
-}
-
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -383,4 +359,17 @@
 #blockContentDisplay {
   -fx-font-family: Roboto Regular;
   -fx-font-size: 13px;
+}
+
+#sideBar {
+  -fx-background-color: #e0e8f9;
+}
+
+#notablyLogo {
+  -fx-background-color: #e0e8f9;
+  -fx-font-family: "Roboto Medium";
+  -fx-font-size: 12px;
+  -fx-text-fill: #19216c;
+  -fx-pref-height: 36px;
+  -fx-padding: 0 16px 0 16px;
 }
