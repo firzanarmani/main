@@ -27,8 +27,19 @@ public class BlockTreeItemImpl implements BlockTreeItem {
         blockTreeItem = treeItem;
     }
 
+    /**
+     * Static method to create a root {@code BlockTreeItem}
+     */
     public static BlockTreeItem createRootBlockTreeItem() {
-        return new BlockTreeItemImpl(BlockImpl.createRootBlock());
+        Block root = BlockImpl.createRootBlock();
+        TreeItem<Block> rootTreeItem = new TreeItem<Block>(root);
+        rootTreeItem.leafProperty().addListener((observable, oldValue, newValue) -> {
+            Body rootBody = newValue
+                ? new Body("Create a new note to get started!")
+                : new Body("Open a note to get started!");
+            rootTreeItem.setValue(new BlockImpl(rootTreeItem.getValue().getTitle(), rootBody));
+        });
+        return new BlockTreeItemImpl(rootTreeItem);
     }
 
     @Override

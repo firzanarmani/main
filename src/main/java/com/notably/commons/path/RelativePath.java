@@ -11,7 +11,7 @@ import com.notably.model.block.Title;
 /**
  * Represents a path to the block relative to the current directory.
  */
-public class RelativePath implements Path {
+public class RelativePath implements Path, Comparable<RelativePath> {
     public static final String INVALID_RELATIVE_PATH = "Invalid relative path";
     public static final String VALIDATION_REGEX =
             "(\\.|\\..|" + Title.VALIDATION_REGEX + ")(\\/(\\.|\\..|" + Title.VALIDATION_REGEX + "))*\\/?";
@@ -102,36 +102,31 @@ public class RelativePath implements Path {
     }
 
     @Override
+    public int compareTo(RelativePath path) {
+        Objects.requireNonNull(path);
+
+        List<String> components = PathUtil.normaliseRelativeComponents(this.components);
+        List<String> pathComponents = PathUtil.normaliseRelativeComponents(path.components);
+
+        int i = 0;
+        while (i < components.size() && i < pathComponents.size()) {
+            if (!components.get(i).equalsIgnoreCase(pathComponents.get(i))) {
+                return components.get(i).compareToIgnoreCase(pathComponents.get(i));
+            }
+            i++;
+        }
+
+        return components.size() - pathComponents.size();
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (!(object instanceof RelativePath)) {
             return false;
         }
+
         RelativePath another = (RelativePath) object;
-        List<String> temp = new ArrayList<>();
-        List<String> anotherTemp = new ArrayList<>();
-        for (String obj: this.getComponents()) {
-            if (obj.equals("..")) {
-                if (temp.size() == 0) {
-                    temp.add(obj.toLowerCase());
-                } else {
-                    temp.remove(temp.size() - 1);
-                }
-            } else if (!obj.equals(".")) {
-                temp.add(obj.toLowerCase());
-            }
-        }
-        for (String obj: another.getComponents()) {
-            if (obj.equals("..")) {
-                if (anotherTemp.size() == 0) {
-                    anotherTemp.add(obj.toLowerCase());
-                } else {
-                    anotherTemp.remove(temp.size() - 1);
-                }
-            } else if (!obj.equals(".")) {
-                anotherTemp.add(obj.toLowerCase());
-            }
-        }
-        return temp.equals(anotherTemp);
+        return compareTo(another) == 0;
     }
 
     @Override

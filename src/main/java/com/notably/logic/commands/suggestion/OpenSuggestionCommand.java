@@ -24,22 +24,23 @@ public class OpenSuggestionCommand implements SuggestionCommand {
     public OpenSuggestionCommand(AbsolutePath path, String oldTitle) {
         Objects.requireNonNull(path);
         Objects.requireNonNull(oldTitle);
+
+        if (oldTitle.isBlank()) {
+            throw new IllegalArgumentException("The old title must contain at least one element");
+        }
+
         this.path = path;
         this.oldTitle = oldTitle;
     }
 
     @Override
     public void execute(Model model) {
-        // Nullity check
         Objects.requireNonNull(model);
 
-        if (!oldTitle.isEmpty()) {
-            // Set suggestions
-            List<AbsolutePath> possiblePaths = getPossiblePaths(path, model);
-            List<SuggestionItem> suggestions = getSuggestions(possiblePaths, model);
+        List<AbsolutePath> possiblePaths = getPossiblePaths(path, model);
+        List<SuggestionItem> suggestions = getSuggestions(possiblePaths, model);
 
-            model.setSuggestions(suggestions);
-        }
+        model.setSuggestions(suggestions);
     }
 
     /**

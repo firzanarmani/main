@@ -13,6 +13,7 @@ import com.notably.commons.path.AbsolutePath;
 import com.notably.model.block.exceptions.CannotModifyRootException;
 import com.notably.model.block.exceptions.DuplicateBlockException;
 import com.notably.model.block.exceptions.NoSuchBlockException;
+import com.notably.testutil.TypicalBlockModel;
 
 public class BlockTreeTest {
     private static AbsolutePath toRoot;
@@ -105,5 +106,17 @@ public class BlockTreeTest {
         AbsolutePath editedPath = AbsolutePath.fromString("/CS2103/Week2");
         blockTree.set(toCs2103Week1, editedBlock);
         assertEquals(blockTree.get(editedPath).getBlock(), editedBlock);
+    }
+
+    @Test
+    public void testRootBodyContent() {
+        blockTree = new BlockTreeImpl();
+        assertEquals(blockTree.getRootBlock().getBody().getText(), "Create a new note to get started!");
+
+        blockTree.add(TypicalBlockModel.PATH_TO_ROOT, TypicalBlockModel.Y2S2);
+        assertEquals(blockTree.getRootBlock().getBody().getText(), "Open a note to get started!");
+
+        blockTree.remove(TypicalBlockModel.PATH_TO_Y2S2);
+        assertEquals(blockTree.getRootBlock().getBody().getText(), "Create a new note to get started!");
     }
 }

@@ -10,6 +10,7 @@ import com.notably.model.Model;
  */
 public class EditSuggestionCommandParser implements SuggestionCommandParser<SuggestionCommand> {
     public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_SHORTHAND = "e";
 
     private static final String RESPONSE_MESSAGE = "Edit this note";
 

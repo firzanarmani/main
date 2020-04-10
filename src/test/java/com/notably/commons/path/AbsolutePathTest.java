@@ -2,6 +2,7 @@ package com.notably.commons.path;
 
 import static com.notably.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +69,34 @@ class AbsolutePathTest {
     }
 
     @Test
-    public void equals_similarPathWithDifferentCasing_pathAreEqual() {
-        final AbsolutePath inputRelativePath1 = AbsolutePath.fromString("/cs2103");
-        final AbsolutePath inputRelativePath2 = AbsolutePath.fromString("/CS2103");
+    public void compareTo_equalPaths() {
+        final AbsolutePath absolutePath1 = AbsolutePath.fromString("/Hello/notes");
+        final AbsolutePath absolutePath2 = AbsolutePath.fromString("/hello/nOtes");
 
-        assertEquals(inputRelativePath2, inputRelativePath1);
+        assertTrue(absolutePath1.compareTo(absolutePath2) == 0);
+    }
+
+    @Test
+    public void compareTo_equalSizePathsWithDifferentComponents() {
+        final AbsolutePath absolutePath1 = AbsolutePath.fromString("/Hello/notes");
+        final AbsolutePath absolutePath2 = AbsolutePath.fromString("/Hello/New notes");
+
+        assertTrue(absolutePath1.compareTo(absolutePath2) > 0);
+    }
+
+    @Test
+    public void compareTo_differentSizePathsWithSamePrefix() {
+        final AbsolutePath absolutePath1 = AbsolutePath.fromString("/Hello/notes/again!");
+        final AbsolutePath absolutePath2 = AbsolutePath.fromString("/hello/notes");
+
+        assertTrue(absolutePath1.compareTo(absolutePath2) > 0);
+    }
+
+    @Test
+    public void equals_similarPathWithDifferentCasing_pathAreEqual() {
+        final AbsolutePath absolutePath1 = AbsolutePath.fromString("/cs2103");
+        final AbsolutePath absolutePath2 = AbsolutePath.fromString("/CS2103");
+
+        assertEquals(absolutePath1, absolutePath2);
     }
 }

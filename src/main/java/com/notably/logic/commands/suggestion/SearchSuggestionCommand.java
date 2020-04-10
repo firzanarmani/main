@@ -29,12 +29,9 @@ public class SearchSuggestionCommand implements SuggestionCommand {
 
     @Override
     public void execute(Model model) {
-        // Nullity check
         Objects.requireNonNull(model);
 
-        // Set suggestions
         List<SuggestionItem> suggestions = traverseTree(model);
-
         model.setSuggestions(suggestions);
     }
 
@@ -69,7 +66,8 @@ public class SearchSuggestionCommand implements SuggestionCommand {
                            and setting action to open that particular block when the user chooses that suggestion. */
                         String bodyLowerCase = blockBody.toLowerCase();
                         if (bodyLowerCase.contains(keyword.toLowerCase())) {
-                            String[] blockBodies = bodyLowerCase.split(keyword, -1);
+                            String[] blockBodies = bodyLowerCase.split(keyword.toLowerCase(), -1);
+
                             int frequency = blockBodies.length - 1;
                             String displayText = absolutePath.getStringRepresentation();
                             Runnable action = () -> {

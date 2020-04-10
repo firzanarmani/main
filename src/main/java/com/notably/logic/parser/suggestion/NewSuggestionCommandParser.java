@@ -9,7 +9,6 @@ import com.notably.logic.commands.suggestion.SuggestionCommand;
 import com.notably.logic.parser.ArgumentMultimap;
 import com.notably.logic.parser.ArgumentTokenizer;
 import com.notably.logic.parser.ParserUtil;
-import com.notably.logic.parser.exceptions.ParseException;
 import com.notably.model.Model;
 import com.notably.model.block.Title;
 
@@ -18,6 +17,7 @@ import com.notably.model.block.Title;
  */
 public class NewSuggestionCommandParser implements SuggestionCommandParser<SuggestionCommand> {
     public static final String COMMAND_WORD = "new";
+    public static final String COMMAND_SHORTHAND = "n";
 
     private static final String RESPONSE_MESSAGE = "Create a new note";
     private static final String RESPONSE_MESSAGE_WITH_TITLE = "Create a new note titled \"%s\".";
@@ -32,11 +32,12 @@ public class NewSuggestionCommandParser implements SuggestionCommandParser<Sugge
     public NewSuggestionCommandParser(Model model) {
         this.model = model;
     }
+
     /**
      * Parses input and displays the appropriate response text.
+     *
      * @param userInput .
-     * @return List of command to execute.
-     * @throws ParseException when input is invalid.
+     * @return Optional.empty()
      */
     public Optional<SuggestionCommand> parse(String userInput) {
         ArgumentMultimap argMultimap =

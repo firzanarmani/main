@@ -31,10 +31,10 @@ public class BlockImpl implements Block {
     }
 
     /**
-     * Static method to create and return a root block
+     * Static method to create and return a root block.
      */
     public static Block createRootBlock() {
-        return new BlockImpl(new Title("Root"));
+        return new BlockImpl(new Title("Root"), new Body("Create a new note to get started!"));
     }
 
     @Override

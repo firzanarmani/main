@@ -2,7 +2,6 @@ package com.notably.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import com.notably.logic.commands.exceptions.CommandException;
 import com.notably.model.Model;
 
 /**
@@ -15,10 +14,9 @@ public class EditCommand extends Command {
     /**
      * Edit the Block body of the current directory.
      * @param notablyModel used to access the tree structure.
-     * @throws CommandException
      */
     public void execute(Model notablyModel) {
         requireNonNull(notablyModel);
+        notablyModel.setBlockEditable(true);
     }
 }
-

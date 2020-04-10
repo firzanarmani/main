@@ -16,8 +16,8 @@ import javafx.scene.web.WebView;
  * Read-only and rendered view of the currently open block's content.
  */
 public class BlockContentDisplayView extends ViewPart<WebView> {
-    private static final String FXML = "blockcontent/BlockContentDisplayView.fxml";
 
+    private static final String FXML = "blockcontent/BlockContentDisplayView.fxml";
     private final Model model;
 
     @FXML

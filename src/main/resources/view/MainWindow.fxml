@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Notably" minWidth="567" minHeight="412" onCloseRequest="#handleExit">
+         title="Notably" minWidth="567" minHeight="412" onCloseRequest="#handleExit" >
   <icons>
     <Image url="@/images/notably_logo_48.png" />
   </icons>
@@ -24,7 +24,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox fx:id="mainWindow">
         <SplitPane VBox.vgrow="ALWAYS">
           <VBox fx:id="sideBar" VBox.vgrow="ALWAYS" SplitPane.resizableWithParent="false" minWidth="180">
             <Label fx:id="notablyLogo" VBox.vgrow="ALWAYS" text="NOTABLY" />

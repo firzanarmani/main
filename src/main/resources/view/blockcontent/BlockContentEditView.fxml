@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
 
-<TextArea
-    xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:id="blockContentTextArea"
-    editable="true"
-    wrapText="true"
-/>
-
+<fx:root resizable="true" title="Edit Note Body" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1" onCloseRequest="#handleClose">
+    <icons>
+        <Image url="@/images/notably_logo_48.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@/view/NotablyTheme.css" />
+                <URL value="@/view/Extensions.css" />
+            </stylesheets>
+            <VBox alignment="CENTER" styleClass="block-edit-modal">
+                <children>
+                    <TextArea fx:id="blockContentTextArea" editable="true" wrapText="true" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets right="5.0" left="5.0"/>
+                        </VBox.margin>
+                    </TextArea>
+                </children>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

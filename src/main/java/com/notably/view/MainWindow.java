@@ -44,6 +44,9 @@ public class MainWindow extends ViewPart<Stage> {
     private Label notablyLogo;
 
     @FXML
+    private VBox mainWindow;
+
+    @FXML
     private StackPane sideBarPlaceholder;
 
     @FXML
@@ -58,12 +61,10 @@ public class MainWindow extends ViewPart<Stage> {
     public MainWindow(Stage primaryStage, Logic logic, Model model) {
         super(FXML, primaryStage);
 
-        // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.model = model;
 
-        // Configure the VIEW
         setWindowDefaultSize(logic.getGuiSettings());
 
         initializeHelpWindow(model);
@@ -83,7 +84,7 @@ public class MainWindow extends ViewPart<Stage> {
         sidebarTreeView = new SideBarTreeView(model.getBlockTree(), model.currentlyOpenPathProperty());
         sideBarPlaceholder.getChildren().add(sidebarTreeView.getRoot());
 
-        blockContent = new BlockContent(blockContentPlaceholder, model);
+        blockContent = new BlockContent(blockContentPlaceholder, logic, model);
 
         suggestionsWindowView = new SuggestionsWindowView(model.getSuggestions(), model.responseTextProperty());
         suggestionsWindow.getChildren().add(suggestionsWindowView.getRoot());
