@@ -33,7 +33,7 @@ public class SuggestionEngineImpl implements SuggestionEngine {
     private static final int CORRECTION_THRESHOLD = 2;
     private static final boolean USE_PATH_FORWARD_MATCHING = true;
 
-    private static final String ERROR_MESSAGE = "\"%s\" is an invalid command format. "
+    private static final String ERROR_MESSAGE_INVALID_COMMAND = "\"%s\" is an invalid command format. "
             + "To see the list of available commands, type: help";
 
     private Model model;
@@ -65,14 +65,14 @@ public class SuggestionEngineImpl implements SuggestionEngine {
     private Optional<? extends SuggestionCommand> parseCommand(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            model.setResponseText(String.format(ERROR_MESSAGE, userInput));
+            model.setResponseText(String.format(ERROR_MESSAGE_INVALID_COMMAND, userInput));
             return Optional.empty();
         }
 
         String commandWord = matcher.group("commandWord");
         CorrectionResult<String> correctionResult = commandCorrectionEngine.correct(commandWord);
         if (correctionResult.getCorrectionStatus() == CorrectionStatus.FAILED) {
-            model.setResponseText(String.format(ERROR_MESSAGE, userInput));
+            model.setResponseText(String.format(ERROR_MESSAGE_INVALID_COMMAND, userInput));
             return Optional.empty();
         }
         commandWord = correctionResult.getCorrectedItems().get(0);

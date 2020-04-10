@@ -79,7 +79,7 @@ public class NotablyParser {
 
         case EditCommand.COMMAND_WORD:
         case EditCommand.COMMAND_SHORTHAND:
-            return new EditCommandParser().parse(arguments);
+            return List.of(new EditCommand());
 
         case HelpCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_SHORTHAND:

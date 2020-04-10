@@ -29,7 +29,7 @@ public class BlockModelTest {
             .getRootBlock()
             .getTreeItem()
             .getChildren(), FXCollections.emptyObservableList());
-        assertEquals(blockModel.getCurrentlyOpenPath(), AbsolutePath.TO_ROOT_PATH);
+        assertEquals(blockModel.getCurrentlyOpenPath(), AbsolutePath.fromString("/"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BlockModelTest {
 
     @Test
     public void removeBlock_removeRoot() {
-        assertThrows(CannotModifyRootException.class, () -> blockModel.removeBlock(AbsolutePath.TO_ROOT_PATH));
+        assertThrows(CannotModifyRootException.class, () -> blockModel.removeBlock(AbsolutePath.fromString("/")));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class BlockModelTest {
         blockModel.setCurrentlyOpenBlock(AbsolutePath.fromString("/CS3230"));
         blockModel.addBlockToCurrentPath(new BlockImpl(new Title("Week1")));
         blockModel.addBlockToCurrentPath(new BlockImpl(new Title("Week2")));
-        blockModel.setCurrentlyOpenBlock(AbsolutePath.TO_ROOT_PATH);
+        blockModel.setCurrentlyOpenBlock(AbsolutePath.fromString("/"));
         assertTrue(blockModel.hasPath(AbsolutePath.fromString("/CS3230/Week1")));
         assertTrue(blockModel.hasPath(AbsolutePath.fromString("/CS3230/Week2")));
     }
@@ -70,7 +70,7 @@ public class BlockModelTest {
     public void removeBlock_nonRootPath() {
         blockModel.setCurrentlyOpenBlock(AbsolutePath.fromString("/CS3230"));
         blockModel.addBlockToCurrentPath(new BlockImpl(new Title("Week1")));
-        blockModel.setCurrentlyOpenBlock(AbsolutePath.TO_ROOT_PATH);
+        blockModel.setCurrentlyOpenBlock(AbsolutePath.fromString("/"));
         blockModel.removeBlock(AbsolutePath.fromString("/CS3230/Week1"));
     }
 

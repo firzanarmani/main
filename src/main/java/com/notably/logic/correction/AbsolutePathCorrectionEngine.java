@@ -93,8 +93,8 @@ public class AbsolutePathCorrectionEngine implements CorrectionEngine<AbsolutePa
             return new CorrectionResult<>(CorrectionStatus.FAILED);
         }
 
-        if (correctedItems.equals(List.of(uncorrected))) {
-            return new CorrectionResult<>(CorrectionStatus.UNCHANGED, List.of(uncorrected));
+        if (correctedItems.size() == 1 && correctedItems.get(0).equals(uncorrected)) {
+            return new CorrectionResult<>(CorrectionStatus.UNCHANGED, correctedItems);
         }
 
         return new CorrectionResult<>(CorrectionStatus.CORRECTED, correctedItems);

@@ -9,7 +9,7 @@ import com.notably.model.Model;
  * Represents a parser for the command word "edit".
  */
 public class ErrorSuggestionCommandParser implements SuggestionCommandParser<SuggestionCommand> {
-    private static final String ERROR_MESSAGE = "\"%s\" is an invalid command format. "
+    private static final String ERROR_MESSAGE_INVALID_COMMAND = "\"%s\" is an invalid command format. "
             + "To see the list of available commands, type: help";
 
     private Model model;
@@ -20,7 +20,7 @@ public class ErrorSuggestionCommandParser implements SuggestionCommandParser<Sug
 
     @Override
     public Optional<SuggestionCommand> parse(String userInput) {
-        model.setResponseText(String.format(ERROR_MESSAGE, userInput));
+        model.setResponseText(String.format(ERROR_MESSAGE_INVALID_COMMAND, userInput));
         return Optional.empty();
     }
 }

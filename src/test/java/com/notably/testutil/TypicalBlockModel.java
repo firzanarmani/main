@@ -14,6 +14,7 @@ import com.notably.model.block.Title;
  * A utility class containing a list of {@code Block} objects to be used in tests.
  */
 public class TypicalBlockModel {
+    public static final AbsolutePath PATH_TO_ROOT = AbsolutePath.fromString("/");
     public static final AbsolutePath PATH_TO_Y2S2 = AbsolutePath.fromString("/Y2S2");
     public static final AbsolutePath PATH_TO_CS2103T = AbsolutePath.fromString("/Y2S2/CS2103T");
     public static final AbsolutePath PATH_TO_CS2103T_LECTURES = AbsolutePath.fromString("/Y2S2/CS2103T/Lecture Notes");
@@ -57,7 +58,7 @@ public class TypicalBlockModel {
     public static BlockModel getTypicalBlockModel() {
         BlockModel blockModel = new BlockModelImpl();
         BlockTree blockTree = new BlockTreeImpl();
-        blockTree.add(AbsolutePath.TO_ROOT_PATH, Y2S2);
+        blockTree.add(PATH_TO_ROOT, Y2S2);
         blockTree.add(PATH_TO_Y2S2, CS2103T);
         blockTree.add(PATH_TO_CS2103T, CS2103T_LECTURES);
         blockTree.add(PATH_TO_CS2103T, CS2103T_TUTORIALS);

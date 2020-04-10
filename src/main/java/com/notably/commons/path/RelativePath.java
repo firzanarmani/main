@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Objects;
 
 import com.notably.commons.path.exceptions.InvalidPathException;
+import com.notably.model.block.Title;
 
 /**
  * Represents a path to the block relative to the current directory.
  */
 public class RelativePath implements Path {
     public static final String INVALID_RELATIVE_PATH = "Invalid relative path";
-    public static final String VALIDATION_REGEX = "(\\.|\\..|([a-zA-Z0-9]+\\s+)*[a-zA-Z0-9]+)"
-            + "(\\/(\\.|\\..|([a-zA-Z0-9]+\\s+)*[a-zA-Z0-9]+))*\\/?";
+    public static final String VALIDATION_REGEX =
+            "(\\.|\\..|" + Title.VALIDATION_REGEX + ")(\\/(\\.|\\..|" + Title.VALIDATION_REGEX + "))*\\/?";
 
     private final List<String> components;
 

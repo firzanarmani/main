@@ -42,7 +42,6 @@ public class NewCommandParser implements CommandParser<Command> {
             throw new ParseException(String.format("Invalid Command"));
         }
 
-
         String title = argMultimap.getValue(PREFIX_TITLE).get();
         String body;
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_BODY)) {
@@ -51,7 +50,6 @@ public class NewCommandParser implements CommandParser<Command> {
             body = argMultimap.getValue(PREFIX_BODY).get();
         }
 
-        AbsolutePath path = ParserUtil.createAbsolutePath(title, notablyModel.getCurrentlyOpenPath());
         Block block;
         try {
             block = new BlockImpl(new Title(title), new Body(body));
@@ -60,15 +58,15 @@ public class NewCommandParser implements CommandParser<Command> {
         }
 
         List<Command> commands = new ArrayList<>();
-        commands.add(new NewCommand(block, path));
+        commands.add(new NewCommand(block));
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_JUMP)) {
             return commands;
         }
 
+        AbsolutePath path = ParserUtil.createAbsolutePath(title, notablyModel.getCurrentlyOpenPath());
         commands.add(new OpenCommand(path));
         return commands;
-
     }
 
 }

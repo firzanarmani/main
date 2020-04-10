@@ -42,7 +42,7 @@ public class SampleDataUtil {
     public static BlockModel getSampleBlockModel() {
         BlockModel sampleBm = new BlockModelImpl();
         BlockTree sampleBt = new BlockTreeImpl();
-        sampleBt.add(AbsolutePath.TO_ROOT_PATH, welcome);
+        sampleBt.add(AbsolutePath.fromString("/"), welcome);
         sampleBt.add(AbsolutePath.fromString("/Welcome"), step1);
         sampleBt.add(AbsolutePath.fromString("/Welcome/"), step2);
         sampleBt.add(AbsolutePath.fromString("/Welcome/"), step3);

@@ -2,7 +2,6 @@ package com.notably.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import com.notably.commons.path.AbsolutePath;
 import com.notably.logic.commands.exceptions.CommandException;
 import com.notably.model.Model;
 import com.notably.model.block.Block;
@@ -15,12 +14,10 @@ public class NewCommand extends Command {
     public static final String COMMAND_WORD = "new";
     public static final String COMMAND_SHORTHAND = "n";
     private final Block toAdd;
-    private AbsolutePath path;
 
-    public NewCommand(Block block, AbsolutePath path) {
+    public NewCommand(Block block) {
         requireNonNull(block);
         this.toAdd = block;
-        this.path = path;
     }
 
     /**

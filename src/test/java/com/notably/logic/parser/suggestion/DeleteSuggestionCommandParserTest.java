@@ -44,7 +44,7 @@ public class DeleteSuggestionCommandParserTest {
     private static final String COMMAND_WORD = "delete";
     private static final String RESPONSE_MESSAGE = "Delete a note";
     private static final String RESPONSE_MESSAGE_WITH_TITLE = "Delete a note titled \"%s\"";
-    private static final String RESPONSE_MESSAGE_CANNOT_DELETE_NOTE = "Cannot delete \"%s\". Invalid path.";
+    private static final String ERROR_MESSAGE_CANNOT_DELETE_NOTE = "Cannot delete \"%s\". Invalid path.";
 
     private static final int CORRECTION_THRESHOLD = 2;
     private static final boolean USE_FORWARD_MATCHING = true;

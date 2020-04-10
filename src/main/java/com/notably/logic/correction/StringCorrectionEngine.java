@@ -67,8 +67,8 @@ public class StringCorrectionEngine implements CorrectionEngine<String> {
             return new CorrectionResult<>(CorrectionStatus.FAILED);
         }
 
-        if (correctedItems.equals(List.of(uncorrected))) {
-            return new CorrectionResult<>(CorrectionStatus.UNCHANGED, List.of(uncorrected));
+        if (correctedItems.size() == 1 && correctedItems.get(0).equalsIgnoreCase(uncorrected)) {
+            return new CorrectionResult<>(CorrectionStatus.UNCHANGED, correctedItems);
         }
 
         return new CorrectionResult<String>(CorrectionStatus.CORRECTED, correctedItems);

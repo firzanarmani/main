@@ -59,7 +59,7 @@ public class StringCorrectionEngineTest {
     public void correct_exactlyMatchOption_noCorrection() {
         final int distanceThreshold = 1;
         final StringCorrectionEngine correctionEngine = new StringCorrectionEngine(OPTIONS, distanceThreshold);
-        final String uncorrectedInput = "help";
+        final String uncorrectedInput = "hELP";
 
         final List<String> expectedCorrectedItems = List.of("help");
         final CorrectionStatus expectedCorrectionStatus = CorrectionStatus.UNCHANGED;

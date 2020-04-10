@@ -86,7 +86,7 @@ class JsonSerializableBlockModel {
             return blockModel;
         }
         if (rootChildren.isEmpty()) {
-            blockModel.setCurrentlyOpenBlock(AbsolutePath.TO_ROOT_PATH);
+            blockModel.setCurrentlyOpenBlock(AbsolutePath.fromString("/"));
             return blockModel;
         }
         BlockTreeItem firstChild = rootChildren.get(0);

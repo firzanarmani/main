@@ -73,9 +73,9 @@ public class AbsolutePathCorrectionEngineTest {
         final int distanceThreshold = 1;
         final AbsolutePathCorrectionEngine correctionEngine = new AbsolutePathCorrectionEngine(
                 model, distanceThreshold, false);
-        final AbsolutePath uncorrectedInput = AbsolutePath.fromString("/Y2S2/CS2106");
+        final AbsolutePath uncorrectedInput = AbsolutePath.fromString("/Y2s2/cs2106");
 
-        final List<AbsolutePath> expectedCorrectedItems = List.of(uncorrectedInput);
+        final List<AbsolutePath> expectedCorrectedItems = List.of(TypicalBlockModel.PATH_TO_CS2106);
         final CorrectionStatus expectedCorrectionStatus = CorrectionStatus.UNCHANGED;
         final CorrectionResult<AbsolutePath> expectedCorrectionResult = new CorrectionResult<>(
                 expectedCorrectionStatus, expectedCorrectedItems);

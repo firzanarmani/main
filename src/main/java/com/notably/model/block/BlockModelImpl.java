@@ -17,7 +17,7 @@ public class BlockModelImpl implements BlockModel {
 
     public BlockModelImpl() {
         blockTree = new BlockTreeImpl();
-        currentlyOpenPath = new SimpleObjectProperty<AbsolutePath>(AbsolutePath.TO_ROOT_PATH);
+        currentlyOpenPath = new SimpleObjectProperty<AbsolutePath>(AbsolutePath.fromString("/"));
     }
 
     @Override

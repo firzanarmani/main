@@ -15,17 +15,18 @@ class AbsolutePathTest {
 
     @Test
     public void fromString_validInputString_generateAbsolutePath() {
-        final AbsolutePath testInput = AbsolutePath.fromString("/CS2103 titty/notes");
+        final AbsolutePath testInput = AbsolutePath.fromString("/CS2103 Happy!/notes/#8.4");
 
         List<String> paths = new ArrayList<>();
-        paths.add("CS2103 titty");
+        paths.add("CS2103 Happy!");
         paths.add("notes");
+        paths.add("#8.4");
 
         assertEquals(paths, testInput.getComponents());
     }
 
     @Test
-    public void fromString_validEmptyString_generateAbsolutePath() {
+    public void fromString_validRootString_generateAbsolutePath() {
         final AbsolutePath testInput = AbsolutePath.fromString("/");
 
         List<String> paths = new ArrayList<>();
@@ -39,14 +40,9 @@ class AbsolutePathTest {
     }
 
     @Test
-    public void fromString_invalidInputString2_exceptionThrown() {
-        assertThrows(InvalidPathException.class, () -> AbsolutePath.fromString("/../CS2103/notes"));
-    }
-
-    @Test
     public void toRelativePath_validInput_correctedPath() {
-        final AbsolutePath inputAbsolutePath = AbsolutePath.fromString("/CS2103/notes/hello");
-        final AbsolutePath inputCurrPath = AbsolutePath.fromString("/CS2103");
+        final AbsolutePath inputAbsolutePath = AbsolutePath.fromString("/&CS2103/notes/hello");
+        final AbsolutePath inputCurrPath = AbsolutePath.fromString("/&CS2103");
 
         final RelativePath expectedOutput = RelativePath.fromString("notes/hello");
 
@@ -55,11 +51,11 @@ class AbsolutePathTest {
 
     @Test
     public void fromRelativePath_validInput_convertedAbsolutePath() {
-        final RelativePath inputRelPath = RelativePath.fromString("../../hello");
-        final AbsolutePath inputCurrPath = AbsolutePath.fromString("/CS2103/filler");
+        final RelativePath inputRelPath = RelativePath.fromString("../../hello??");
+        final AbsolutePath inputCurrPath = AbsolutePath.fromString("/CS.2103/filler");
 
         List<String> expectedPaths = new ArrayList<>();
-        expectedPaths.add("hello");
+        expectedPaths.add("hello??");
 
         assertEquals(expectedPaths, AbsolutePath.fromRelativePath(inputRelPath, inputCurrPath).getComponents());
     }

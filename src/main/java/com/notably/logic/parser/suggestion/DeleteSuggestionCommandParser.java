@@ -23,7 +23,7 @@ public class DeleteSuggestionCommandParser implements SuggestionCommandParser<De
 
     private static final String RESPONSE_MESSAGE = "Delete a note";
     private static final String RESPONSE_MESSAGE_WITH_TITLE = "Delete a note titled \"%s\"";
-    private static final String RESPONSE_MESSAGE_CANNOT_DELETE_NOTE = "Cannot delete \"%s\". Invalid path.";
+    private static final String ERROR_MESSAGE_CANNOT_DELETE_NOTE = "Cannot delete \"%s\" as it is an invalid path";
 
     private Model model;
     private CorrectionEngine<AbsolutePath> pathCorrectionEngine;
@@ -61,7 +61,7 @@ public class DeleteSuggestionCommandParser implements SuggestionCommandParser<De
         try {
             uncorrectedPath = ParserUtil.createAbsolutePath(title, model.getCurrentlyOpenPath());
         } catch (ParseException pe) {
-            model.setResponseText(String.format(RESPONSE_MESSAGE_CANNOT_DELETE_NOTE, title));
+            model.setResponseText(String.format(ERROR_MESSAGE_CANNOT_DELETE_NOTE, title));
             return Optional.empty();
         }
 
